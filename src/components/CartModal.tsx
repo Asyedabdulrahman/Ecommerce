@@ -127,7 +127,7 @@ const CartModal = () => {
           <div>
             <div className="flex items-center justify-between font-semibold">
               <span>Subtotal</span>
-              <span>{cart?.lineItems[0].price?.formattedConvertedAmount}</span>
+              <span>{cart?.subtotal?.amount}</span>
             </div>
             <p className="text-gray-500 text-sm mt-2 mb-4">
               Shipping and taxes calculated at checkout.
