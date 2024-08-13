@@ -92,6 +92,7 @@ const LoginPage = () => {
       switch (response?.loginState) {
         case LoginState.SUCCESS:
           setMessage("Successful! You are being redirected.");
+          router.push("/");
           const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
             response.data.sessionToken!
           );
@@ -190,7 +191,7 @@ const LoginPage = () => {
           </div>
         )}
         <button
-          className="bg-lama text-white p-2 rounded-md disabled:bg-pink-200 disabled:cursor-not-allowed"
+          className="bg-lama text-white p-2 rounded-md disabled:bg-pink-200 disabled:cursor-not-allowed "
           disabled={isLoading}
         >
           {isLoading ? "Loading..." : buttonTitle}
@@ -198,7 +199,7 @@ const LoginPage = () => {
         {error && <div className="text-red-600">{error}</div>}
         {mode === MODE.LOGIN && (
           <div
-            className="text-sm underline cursor-pointer"
+            className="text-sm underline cursor-pointer flex justify-center"
             onClick={() => setMode(MODE.REGISTER)}
           >
             {"Don't"} have an account?
@@ -206,7 +207,7 @@ const LoginPage = () => {
         )}
         {mode === MODE.REGISTER && (
           <div
-            className="text-sm underline cursor-pointer"
+            className="text-sm underline cursor-pointer flex justify-center"
             onClick={() => setMode(MODE.LOGIN)}
           >
             Have and account?
