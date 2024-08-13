@@ -20,11 +20,7 @@ const LoginPage = () => {
   const isLoggedIn = wixClient.auth.loggedIn();
 
   if (isLoggedIn) {
-    try {
-      router.push("/");
-    } catch (error) {
-      console.log(error);
-    }
+    router.push("/");
   }
 
   const [mode, setMode] = useState(MODE.LOGIN);
@@ -96,7 +92,7 @@ const LoginPage = () => {
       switch (response?.loginState) {
         case LoginState.SUCCESS:
           setMessage("Successful! You are being redirected.");
-          router.push("/");
+          // router.push("/");
           const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
             response.data.sessionToken!
           );
