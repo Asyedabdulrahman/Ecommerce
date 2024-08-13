@@ -20,7 +20,11 @@ const LoginPage = () => {
   const isLoggedIn = wixClient.auth.loggedIn();
 
   if (isLoggedIn) {
-    router.push("/");
+    try {
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const [mode, setMode] = useState(MODE.LOGIN);
@@ -92,7 +96,6 @@ const LoginPage = () => {
       switch (response?.loginState) {
         case LoginState.SUCCESS:
           setMessage("Successful! You are being redirected.");
-          // router.push("/");
           const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
             response.data.sessionToken!
           );
@@ -184,14 +187,14 @@ const LoginPage = () => {
         ) : null}
         {mode === MODE.LOGIN && (
           <div
-            className="text-sm underline cursor-pointer"
+            className="text-sm underline cursor-pointer flex justify-between"
             onClick={() => setMode(MODE.RESET_PASSWORD)}
           >
             Forgot Password?
           </div>
         )}
         <button
-          className="bg-lama text-white p-2 rounded-md disabled:bg-pink-200 disabled:cursor-not-allowed "
+          className="bg-lama text-white p-2 rounded-md disabled:bg-pink-200 disabled:cursor-not-allowed"
           disabled={isLoading}
         >
           {isLoading ? "Loading..." : buttonTitle}
@@ -199,7 +202,7 @@ const LoginPage = () => {
         {error && <div className="text-red-600">{error}</div>}
         {mode === MODE.LOGIN && (
           <div
-            className="text-sm underline cursor-pointer flex justify-center"
+            className="text-sm underline cursor-pointer flex justify-between"
             onClick={() => setMode(MODE.REGISTER)}
           >
             {"Don't"} have an account?
@@ -207,7 +210,7 @@ const LoginPage = () => {
         )}
         {mode === MODE.REGISTER && (
           <div
-            className="text-sm underline cursor-pointer flex justify-center"
+            className="text-sm underline cursor-pointer flex justify-between"
             onClick={() => setMode(MODE.LOGIN)}
           >
             Have and account?
