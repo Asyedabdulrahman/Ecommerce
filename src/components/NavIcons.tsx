@@ -77,7 +77,7 @@ const NavIcons = () => {
       />
       {isProfileOpen && (
         <div className="absolute p-2 bg-white rounded-md top-12 left-0 text-sm shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-20">
-          <Link href="/profiler">Profile</Link>
+          {/* <Link href="/profiler">Profile</Link> */}
           <div className="mt-2 cursor-pointer" onClick={LogoutwixClient}>
             {isLoading ? "Logging out" : "Log out"}
           </div>
