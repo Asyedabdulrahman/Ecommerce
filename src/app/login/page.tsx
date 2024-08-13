@@ -20,7 +20,11 @@ const LoginPage = () => {
   const isLoggedIn = wixClient.auth.loggedIn();
 
   if (isLoggedIn) {
-    router.push("/");
+    try {
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const [mode, setMode] = useState(MODE.LOGIN);
