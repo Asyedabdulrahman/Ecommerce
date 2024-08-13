@@ -114,7 +114,7 @@ const CartModal = () => {
                     <span
                       className="text-blue-500"
                       style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
-                      onClick={() => removeItem(wixClient, item._id)}
+                      onClick={() => removeItem(wixClient, item._id!)}
                     >
                       Remove
                     </span>
@@ -127,7 +127,9 @@ const CartModal = () => {
           <div>
             <div className="flex items-center justify-between font-semibold">
               <span>Subtotal</span>
-              <span>{cart?.subtotal?.formattedAmount || ""}</span>
+              <span>
+                {cart?.lineItems[0].price?.formattedConvertedAmount || ""}
+              </span>
             </div>
             <p className="text-gray-500 text-sm mt-2 mb-4">
               Shipping and taxes calculated at checkout.
